@@ -29,6 +29,21 @@ app.get("/", function (req, res) {
   res.render("index", { title: "Home" })
 })
 
+app.get('/custom', function (req, res) {
+  res.render('custom');
+  });
+
+  app.get('/sedan', function (req, res) {
+  res.render('sedan');
+  });
+
+  app.get('/suv', function (req, res) {
+  res.render('suv');
+  });
+
+  app.get('/truck', function (req, res) {
+  res.render('truck');
+  });
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file

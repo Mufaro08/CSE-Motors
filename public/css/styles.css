@@ -3,4 +3,196 @@
 *:before,
 *:after {
   box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+  --primary-color: #222f3e;
+  --secondary-color: #e0a33e;
+  --accent-color: #ffffff;
+  --text-color-light: #333333;
+  --text-color-dark:#222f3e;
+  --background-color: #fafafa ;
+  --border-radius: 5px;
+  --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.my-footer {
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+  padding: 10px;
+  text-align: center;
+}
+
+.my-footer .copyright {
+  font-size: 0.8em;
+}
+
+
+.my-header {
+  background-color: var(--primary-color);
+  color: var(--accent-color);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my-header .siteName a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.my-header #tools a {
+  color: var(--accent-color);
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: var(--border-radius);
+}
+
+.my-header #tools a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+nav {
+  background-color: var(--secondary-color);
+  padding: 10px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav li a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: var(--border-radius);
+}
+
+nav li a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background-image: url("/images/site/checkerboard.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  font-family: sans-serif;
+  padding-top: 25px;
+}
+
+.page-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(244, 4, 4, 0.2);
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+  background-image: url("/images/vehicles/delorean.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.text-column {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  float: right;
+  width: 40%;
+}
+
+.image-column {
+  flex: 1;
+}
+
+.image-column img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.upgrades-reviews {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.upgrades-column {
+  flex: 1;
+}
+
+.reviews-column {
+  flex: 1;
+}
+
+.upgrade-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  
+}
+
+.upgrade-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.image-container {
+  background-color: #e0a33e;
+  padding: 5px;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+}
+
+@media (max-width: 768px) {
+  .upgrade-images {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.review {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+}
+
+@media (max-width: 768px) {
+  .upgrades-reviews {
+    flex-direction: column;
+  }
+
+  .upgrade-images {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

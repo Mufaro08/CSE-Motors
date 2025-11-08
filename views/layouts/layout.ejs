@@ -2,13 +2,18 @@
 <html lang="en">
 <%- include ('../partials/head') %>
 <body>
-    <div id="wrapper">
-        <%- include ('../partials/header') %>
-        <%- include ('../partials/navigation') %>
-        <main>
+    <div class="page-wrapper">
+       
+            <%- include('../partials/header') %>
+            <%- include ('../partials/navigation') %>
+     
+        <main class="container">
             <%- body %>
         </main>
-        <%- include ('../partials/footer') %>
+
+            <%- include('../partials/footer') %>
+
     </div>
 </body>
+
 </html>
