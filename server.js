@@ -11,14 +11,15 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require('./routes/inventoryRoute');
-
+const invModel = require("./models/inventory-model");
 
 /* ***********************
  * View Engine and Templates
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
+app.set("layout", "./layouts/layout") 
+
 
 
 /* ***********************
@@ -34,12 +35,14 @@ app.get("/", function (req, res) {
 app.use("/inv", inventoryRoute)
 
 app.get('/custom', function (req, res) {
-  res.render('custom');
+  res.render('custom', { title: 'Custom Vehicles' });
   });
 
   app.get('/sedan', function (req, res) {
-  res.render('sedan');
+    res.render('sedan');
   });
+  
+
 
   app.get('/suv', function (req, res) {
   res.render('suv');
