@@ -1,66 +1,33 @@
-/* ******************************************
- * This server.js file is the primary file of the 
- * application. It is used to control the project.
- *******************************************/
-/* ***********************
- * Require Statements
- *************************/
-const express = require("express")
-const expressLayouts = require("express-ejs-layouts")
-const env = require("dotenv").config()
-const app = express()
-const static = require("./routes/static")
-const inventoryRoute = require('./routes/inventoryRoute');
-const invModel = require("./models/inventory-model");
+const express = require("express");
+const expressLayouts = require("express-ejs-layouts");
+const dotenv = require("dotenv").config();
+const app = express();
 
-/* ***********************
- * View Engine and Templates
- *************************/
-app.set("view engine", "ejs")
-app.use(expressLayouts)
-app.set("layout", "./layouts/layout") 
+const staticRoute = require("./routes/static");
+const inventoryRoute = require("./routes/inventoryRoute");
 
+// View engine setup
+app.set("view engine", "ejs");
+app.use(expressLayouts);
+app.set("layout", "./layouts/layout");
 
+// Middleware
+app.use(staticRoute);
 
-/* ***********************
- * Routes
- *************************/
-app.use(static)
-//Index route
-app.get("/", function (req, res) {
-  res.render("index", { title: "Home" })
-})
+// Home route
+app.get("/", async (req, res) => {
+  const utilities = require("./utilities");
+  const nav = await utilities.getNav();
+  res.render("index", { title: "Home", nav });
+});
 
 // Inventory routes
-app.use("/inv", inventoryRoute)
+app.use("/inv", inventoryRoute);
 
-app.get('/custom', function (req, res) {
-  res.render('custom', { title: 'Custom Vehicles' });
-  });
+// Local server
+const port = process.env.PORT || 3000;
+const host = process.env.HOST || "localhost";
 
-  app.get('/sedan', function (req, res) {
-    res.render('sedan');
-  });
-  
-
-
-  app.get('/suv', function (req, res) {
-  res.render('suv');
-  });
-
-  app.get('/truck', function (req, res) {
-  res.render('truck');
-  });
-/* ***********************
- * Local Server Information
- * Values from .env (environment) file
- *************************/
-const port = process.env.PORT
-const host = process.env.HOST
-
-/* ***********************
- * Log statement to confirm server operation
- *************************/
 app.listen(port, () => {
-  console.log(`app listening on ${host}:${port}`)
-})
+  console.log(`Server running at http://${host}:${port}`);
+});

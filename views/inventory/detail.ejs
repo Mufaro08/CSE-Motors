@@ -1,49 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/header') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>
-        <%= title %>
-    </title>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
-
-<body>
-
-    <!-- Header -->
-    <header>
-        <%- include("../partials/header") %>
-    </header>
-
-    <!-- Navigation -->
     <nav>
         <%- nav %>
     </nav>
 
-    <!-- Main content -->
     <main class="vehicle-detail">
-
         <h1>
             <%= title %>
         </h1>
 
-        <!-- Vehicle details from utilities.buildVehicleDetailHTML -->
         <section>
             <%- detailHTML %>
         </section>
-
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <%- include("../partials/footer") %>
-    </footer>
-
-</body>
-
-</html>
+    <%- include('../partials/footer') %>

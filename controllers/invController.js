@@ -1,22 +1,26 @@
 const invModel = require("../models/inventory-model");
-const utilities = require("../utilities/");
+const utilities = require("../utilities");
 
 const invCont = {};
 
-/* ***************************
- * Build inventory by classification view
- * ************************** */
+// Build inventory by classification
 invCont.buildByClassificationId = async function (req, res, next) {
   try {
     const classification_id = parseInt(req.params.classificationId);
     const data = await invModel.getInventoryByClassificationId(classification_id);
 
+    const nav = await utilities.getNav();
+
     if (!data || data.length === 0) {
-      return res.status(404).send("No vehicles found in this category.");
+      return res.render("./inventory/classification", {
+        title: "No Vehicles Found",
+        nav,
+        grid: "",
+        errors: null,
+      });
     }
 
     const grid = await utilities.buildClassificationGrid(data);
-    const nav = await utilities.getNav();
     const className = data[0].classification_name;
 
     res.render("./inventory/classification", {
@@ -30,20 +34,20 @@ invCont.buildByClassificationId = async function (req, res, next) {
   }
 };
 
-/* ***************************
- * Get vehicle details by inv_id
- * ************************** */
+// Vehicle details by ID
 invCont.getVehicleDetail = async function (req, res, next) {
   try {
     const inv_id = parseInt(req.params.inv_id);
-    if (isNaN(inv_id)) return res.status(400).send("Invalid inventory ID.");
+    if (isNaN(inv_id)) return res.status(400).send("Invalid inventory ID");
 
     const vehicle = await invModel.getVehicleById(inv_id);
-    if (!vehicle) return res.status(404).send("Vehicle not found.");
-
-    const detailHTML = utilities.buildVehicleDetailHTML(vehicle);
     const nav = await utilities.getNav();
 
+    if (!vehicle) {
+      return res.status(404).send("Vehicle not found");
+    }
+
+    const detailHTML = utilities.buildVehicleDetailHTML(vehicle);
     const title = `${vehicle.inv_make} ${vehicle.inv_model} Details`;
 
     res.render("./inventory/detail", {
