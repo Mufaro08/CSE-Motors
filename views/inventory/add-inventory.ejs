@@ -1,0 +1,52 @@
+<h1>Add Inventory Item</h1>
+
+<form action="/inv/add-inventory" method="post">
+
+    <% if (errors) { %>
+        <ul>
+            <% errors.forEach(err=> { %>
+                <li class="error">
+                    <%= err.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
+
+            <label>Make</label>
+            <input name="inv_make" value="<%= data.inv_make || '' %>">
+
+            <label>Model</label>
+            <input name="inv_model" value="<%= data.inv_model || '' %>">
+
+            <label>Year</label>
+            <input name="inv_year" value="<%= data.inv_year || '' %>">
+
+            <label>Description</label>
+            <textarea name="inv_description"><%= data.inv_description || '' %></textarea>
+
+            <label>Image Path</label>
+            <input name="inv_image" value="<%= data.inv_image || '' %>">
+
+            <label>Thumbnail</label>
+            <input name="inv_thumbnail" value="<%= data.inv_thumbnail || '' %>">
+
+            <label>Price</label>
+            <input name="inv_price" value="<%= data.inv_price || '' %>">
+
+            <label>Miles</label>
+            <input name="inv_miles" value="<%= data.inv_miles || '' %>">
+
+            <label>Color</label>
+            <input name="inv_color" value="<%= data.inv_color || '' %>">
+
+            <label>Classification</label>
+            <select name="classification_id">
+                <% classifications.forEach(c=> { %>
+                    <option value="<%= c.classification_id %>">
+                        <%= c.classification_name %>
+                    </option>
+                    <% }) %>
+            </select>
+
+            <button type="submit">Save Item</button>
+</form>
